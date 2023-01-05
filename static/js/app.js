@@ -2,6 +2,32 @@ const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/
 const data = d3.json(url);
 var names = dataNames();
 let ID = 0;
+let states = ["HI", "AK", "FL", "NH", "VT", "ME", "RI", "NY", "PA", "NJ", "DE", "MD", "VA", "WV", "OH", "IN", "IL", "CT", "WI", "NC", "DC", "MA", "TN", "AR", "MO", "GA", "SC", "KY", "AL", "LA", "MS", "IA", "MN", "OK", "TX", "NM", "KS", "NE", "SD", "ND", "WY", "MT", "CO", "UT", "AZ", "NV", "OR", "WA", "CA", "MI", "ID", "GU", "VI", "PR", "AS", "MP"];
+var states_result = [];
+var states_color = [];
+
+function setStateResult(states_list){
+   states_result = [];
+   for(let i = 0; i < states_list.length; i++) {
+      if (i % 2 == 0) {
+         states_result.push("dem");
+     } else {
+      states_result.push("rep");
+     }
+   }
+}
+
+function setStateColor(result){
+   states_color = [];
+   for(let i = 0; i < result.length; i++) {
+      var party = result[i];
+      if (party == "dem") {
+         states_color.push("blue");
+       } else {
+         states_color.push("red");
+       }
+   }
+}
 
 function dataNames(){
    return data.then(function (inspect) {
@@ -198,5 +224,7 @@ gaugedisplay(ID);
 bardisplay(ID);
 bubbledisplay(ID);
 paneldisplay(ID);
+setStateResult(states);
+setStateColor(states_result);
 
  
