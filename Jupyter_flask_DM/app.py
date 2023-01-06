@@ -1,15 +1,22 @@
+import numpy as np
+
+import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
+from datetime import datetime
+from dateutil.relativedelta import relativedelta 
 from config import username ,password , port  
 
 from flask import Flask, render_template, jsonify
-from flask_cors import CORS, cross_origin
+from flask.ext.cors import CORS, cross_origin
+
 
 #################################################
 # Database Setup
 #################################################
 
+#engine = create_engine("sqlite:///../Resources/hawaii.sqlite")
 engine = create_engine(f'postgresql://{username}:{password}@localhost:{port}/Vote_data_db')
 
 # reflect an existing database into a new model
@@ -27,21 +34,27 @@ sex_race_dataset = Base.classes.sex_race_dataset
 # Flask Setup
 #################################################
 app = Flask(__name__)
-app.config['SECRET_KEY']= 'Project3'
-app.config['CORS_HEADERS'] = 'Content-Type'
-CORS(app)
+
 
 #################################################
 # Flask Routes
 #################################################
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", 'POST'])
 def index():
     return render_template('index.html')
 
-@app.route("/state_summary", methods=["GET", 'POST'])
-def state():
-    return render_template('state.html')
+# def welcome():    
+    
+#     """List all available api routes."""
+#     return (
+#         f"Available Routes:<br/>"
+#         f"/api/v1.0/voting_summary/state/year<br/>"
+#         f"state: full name in capital letters of any US state<br/>"
+#         f"year: 2016, 2018<br/>"
 
+#     )
+
+ 
 @app.route("/api/v1.0/voting_summary/<state>/<year>", methods=["GET", 'POST'])
 
 def voting_summary(state, year):
@@ -114,11 +127,8 @@ def voting_summary(state, year):
     response = jsonify(voting_summary)
     # Enable Access-Control-Allow-Origin
     response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add("Access-Control-Allow-Private-Network", "*")
-    
+
     return response
 
-
-    
 if __name__ == '__main__':
     app.run(debug=True)

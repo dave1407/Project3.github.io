@@ -1,10 +1,26 @@
-const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
+var state_response = window.localStorage.getItem('state_response')
+
+console.log(state_response)
+
+const baseUrl = 'http://localhost:5000/api/v1.0/voting_summary/'
+const url = new URL(state_response, baseUrl);
+
+
 const data = d3.json(url);
-var names = dataNames();
+var ages = dataState();
+console.log(ages)
+
 let ID = 0;
 let states = ["HI", "AK", "FL", "NH", "VT", "ME", "RI", "NY", "PA", "NJ", "DE", "MD", "VA", "WV", "OH", "IN", "IL", "CT", "WI", "NC", "DC", "MA", "TN", "AR", "MO", "GA", "SC", "KY", "AL", "LA", "MS", "IA", "MN", "OK", "TX", "NM", "KS", "NE", "SD", "ND", "WY", "MT", "CO", "UT", "AZ", "NV", "OR", "WA", "CA", "MI", "ID", "GU", "VI", "PR", "AS", "MP"];
 var states_result = [];
 var states_color = [];
+
+function dataState(){
+   return data.then(function (inspect) {
+      let age_list = inspect.age_stats;
+      return Promise.resolve(age_list);
+   });
+}
 
 function setStateResult(states_list){
    states_result = [];
@@ -219,11 +235,11 @@ function optionChanged(subjectID){
 
 
  
-initdropdown();
-gaugedisplay(ID);
-bardisplay(ID);
-bubbledisplay(ID);
-paneldisplay(ID);
+// initdropdown();
+// gaugedisplay(ID);
+// bardisplay(ID);
+// bubbledisplay(ID);
+// paneldisplay(ID);
 setStateResult(states);
 setStateColor(states_result);
 
