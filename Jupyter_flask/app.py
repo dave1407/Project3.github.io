@@ -44,7 +44,8 @@ def welcome():
     """List all available api routes."""
     return (
         f"Available Routes:<br/>"
-        f"/api/v1.0/voting_summary/<state>/<year><br/>"
+        f"/api/v1.0/voting_summary/&lt;state&gt;/&lt;year&gt;<br/>"
+        f"/api/v1.0/voting_summary/years<br/>"
     )
     
 
@@ -121,6 +122,20 @@ def voting_summary(state, year):
     
 
     return jsonify(voting_summary)
+
+@app.route("/api/v1.0/voting_summary/years")
+
+def years():
+    
+    with Session(engine) as session:        
+        """ Return a JSON list of stations from the dataset."""          
+    # Query all Station
+        results = session.query(age_dataset.voting_year).distinct(age_dataset.voting_year).all()
+         
+    #Convert list of tuples into normal list
+    all_names = [int(x) for x in list(np.ravel(results))]
+
+    return jsonify(all_names)
 
 
     
