@@ -59,17 +59,6 @@ def voting_summary(state, year):
     
     voting_summary={}
     
-    # sex_stats['Male'] = 25
-    # sex_stats['Female'] = 23
-    
-    race_stats = {}
-    race_stats['White alone'] = 100
-    race_stats['Black alone'] = 80
-    race_stats['Asian alone'] = 40
-    
-    
-    # voting_summary['sex_stats'] = sex_stats
-    # voting_summary['race_stats'] = race_stats
     
     with Session(engine) as session:
         """ Convert the query results to a dictionary using `date` as the key and `prcp` as the value.
@@ -116,6 +105,19 @@ def voting_summary(state, year):
      print('**************************') 
      print(sex_race_results_by_sex)
      print('**************************') 
+    
+    
+    sex_race_results_by_race =  session.query(sex_race_dataset.sex_race_hispanic_origin, sex_race_dataset.total_voted,)\
+            .filter(sex_race_dataset.sex_race_hispanic_origin.notin_(('Male','Total','Female')) ,sex_race_dataset.state==state, sex_race_dataset.voting_year==year)\
+            .all()
+            
+    race_stats = {}
+    
+    for sex_race_hispanic_origin , total_voted in sex_race_results_by_race:
+     race_stats[sex_race_hispanic_origin] = total_voted 
+    
+    
+     voting_summary['race_stats'] = race_stats
     
 
     return jsonify(voting_summary)
