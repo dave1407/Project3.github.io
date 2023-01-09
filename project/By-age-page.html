@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Age Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+    .main {
+        border: 1px solid green;
+        float: left;
+        min-height: 180px;
+        margin: 2px;
+        padding: 10px;
+        min-width: 117px;
+        position: relative;
+    }
+
+    .gfg {
+        font-size: 40px;
+        color: green;
+        font-weight: bold;
+        tect-align: center
+    }
+
+    .geeks {
+        text-align: center;
+    }
+
+    #bottom {
+        position: absolute;
+        bottom:0;
+        left: 0;
+    }
+    
+    #left {
+        position: absolute;
+        left: 0;
+    }
+
+    #right {
+        position: absolute;
+        right: 0;
+    }
+</style>
+</head>
+
+<body>
+
+  <div class="container">
+   
+      <div class="col-sm">
+        <h1 align="left">Visual Study of Voter Data</h1>
+        <p>Use the interactive charts below to explore the dataset</p>
+      </div>
+      <div class="col-md-5">
+        
+      </div>
+    
+    <div class="row">
+      <div class="col-md-5">
+        <div class="well" id="bottom">
+          <h3>Year:</h3>
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+          <p><a href="index.html" target="_blank">Year Data</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5" align ="left" >
+      <div id="bar"></div>
+    </div>
+      <div class="col-md-12" align ="right">
+        <div id="path"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="./static/js/app.js"></script>
+  <script src="./static/js/map.js"></script>
+  <script src="./static/js/state.js"></script>
+
+</body>
+
+</html>
