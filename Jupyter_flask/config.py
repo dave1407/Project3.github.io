@@ -1,3 +1,3 @@
 username ='postgres'
-password='postgres'
+password='Nico100%'
 port='5432'
