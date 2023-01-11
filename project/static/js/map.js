@@ -14,10 +14,10 @@ document.addEventListener('mouseover', function (e) {
 document.addEventListener('click', function (e) {
     if (e.target.tagName == 'path') {
         var content = e.target.dataset.name;
-        var year_selected = window.localStorage.getItem('year_selected')
-        var response = content + "/" + year_selected;
-        window.localStorage.setItem('state_response', response)
-        window.location.href = "/state_summary";
+        state_selected = content;
+        window.localStorage.setItem('state_selected', state_selected);
+        dataUpdate();
+        // window.location.href = "/state_summary";
     }
     else {
         document.getElementById("details-box").style.opacity = "0%";
