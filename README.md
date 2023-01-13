@@ -4,7 +4,7 @@
 An interactive website that looks ove voting data of 1016 and 2018 that helps to show us more about how voting will be in the future..<br><br>
 
 
-![screenshot](/static/img/screenshot_crop.png)
+![screenshot](project/static/img/Website.png)
 
 ## Background
 We researched datasets that would help us track voting trends among ethnicity, sex, and age. We found data that tracked the voting habits of voters in the years of 2016 and 2018. 2016 being the year of the presidential election and 2018 being the year of senate and house of representative elections.
