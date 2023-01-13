@@ -7,6 +7,8 @@ var state_selected = "Alabama";
 var year_selected = "";
 var years = ["2016", "2018"];
 var age_id = [];
+var race_id = [];
+var sex_id = [];
 
 function dataUpdate(){
    year_selected = document.getElementById("selDataset").value;
@@ -19,9 +21,8 @@ function dataUpdate(){
    window.localStorage.setItem('year_selected', year_selected);
    window.localStorage.setItem('state_selected', state_selected);
    window.localStorage.setItem("age_id", JSON.stringify(age_id));
-   console.log(year_selected);
-   console.log(state_selected);
-   console.log(age_id);
+   window.localStorage.setItem("race_id", JSON.stringify(race_id));
+   window.localStorage.setItem("sex_id", JSON.stringify(sex_id));
 }
 
 function dropdowndisplay() {
@@ -63,7 +64,7 @@ function agebardisplay() {
 
 function racebardisplay() {
    return data.then(function (inspect) {
-      let race_id = inspect.race_stats.origin_group;
+      race_id = inspect.race_stats.origin_group;
       let race_value = inspect.race_stats.voted;
 
          let dataplt = [{
@@ -78,7 +79,7 @@ function racebardisplay() {
             "yaxis": {
                "type":"category"
             },
-            margin: {"t": 0, "b": 0, "l": 0, "r": 0}
+            //margin: {"t": 0, "b": 0, "l": 0, "r": 0}
             // height: 600,
             // width: 500,
          };
@@ -89,7 +90,7 @@ function racebardisplay() {
 
 function sexpiedisplay() {
    return data.then(function (inspect) {
-      let sex_id = inspect.sex_stats.sex_group;
+      sex_id = inspect.sex_stats.sex_group;
       let sex_value = inspect.sex_stats.voted;
 
       var data = [{
