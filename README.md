@@ -10,7 +10,7 @@ An interactive website that looks ove voting data of 1016 and 2018 that helps to
 We researched datasets that would help us track voting trends among ethnicity, sex, and age. We found data that tracked the voting habits of voters in the years of 2016 and 2018. 2016 being the year of the presidential election and 2018 being the year of senate and house of representative elections.
 
 ## Getting Started
-_If you prefer to run the dashboard on your local server, please follow the instructions below. Otherwise, you can view the deployed page [here](http://apizzo1-hindsight-2020.herokuapp.com/)._
+_Please follow the instructions below.
 
 1. Download the repo in your preferred manner.
 2. Create a file called `config.py` in the `/project` folder. 
