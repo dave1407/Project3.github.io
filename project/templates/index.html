@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Project 3</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="./static/css/style.css">
   <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAA
 AAAAAADGxsYAWFhYABwcHABfAP8A/9dfAADXrwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -14,18 +14,12 @@ AAAAAAAAAAAAAAAAIiIiIiIiIiIjMlUkQgAiIiIiIiIiIiIiIzJVJEIAAAIiIiIiIiIiIiMyVSRC
 AAIiIiIiIiIiIiIRERERERERERERERERERERIiIiIiIiIiIgACVVUiIiIiIiIiIiIiIiIAAlVVIi
 IiIiIiIiIiIiIhEREREREREREREREREREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
-<link rel="stylesheet" href="../assets/css/bootstrap.min.css" media="screen">
 
-  <!-- Our own CSS stylesheet -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
- 
 </head>
 
 <body>
+
+  <div id="details-box"></div> 
 
   <div class="container">
     <div class="row">
@@ -40,7 +34,6 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
           <div class="col-md-8">
               <div class="col-md-12">
                   <p style="font-size: 14px;">First select the year you would like to study. Next select any state on the map to see voter information. Lastly, click on any chart to navigate to new page and see a cool heat map </p>
-              
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -54,11 +47,12 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
              <div class="collapse navbar-collapse" id="navbarSupportedContent">
                  <ul class="navbar-nav ml-auto">    
                      <li class="nav-item dropdown">
-                         <!-- <a style="font-size: 14px;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <a style="font-size: 14px;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              Select Year
-                         </a> -->
-                         <h3>Select Year</h3>
-                         <select id="selDataset" onchange="optionChanged()"></select>
+                         </a>
+                         <div>
+                         <select id="selDataset" onchange="dataUpdate()"></select>
+                        </div> 
                          <!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                              <a class="dropdown-item" >2018</a>
                              <a class="dropdown-item" >2016</a>
@@ -66,27 +60,10 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
                  </ul>
              </div>
          </div>
-     </nav>     
-
-   <div class="col-md-5">
-        <div id="age_bar"></div>
-   </div>
-   <div class="col-md-5">
-        <div id="sex_pie"></div>
-   </div>
-   
-    <div class="row">
-      <div class="col-md-12">
-        <div id="race_bar"></div>
-      </div>
-    </div>
+        </nav>     
   </div>
+</div>
 
-</div> 
-  <!--<div>
-    <h2>US Map - CLICK ON A STATE</h2>
-    <hr>  
-  </div>-->
 
 
 <div id="map_container">
@@ -95,8 +72,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
          <div>
             <h2>US Map - CLICK ON A STATE</h2>
             <hr>  
-          </div>
-         <div id="details-box"></div>   
+          </div>  
     
         <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -538,15 +514,21 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
              <hr>
              <div class="row">
                  <div class="col-3 col-md-6">
-                     <a href="visualizations/temp.html"><img src="https://github.com/nico555c/Web-Design-Challenge/blob/main/assets/images/Fig1.png?raw=true" width="100%" alt="temp"></a>
+                  <a href="/age">
+                     <div id="age_bar" style:width: 100%></div>
+                  </a>      
                  </div>
                 
                  <div class="col-3 col-md-6">
-                     <a href="visualizations/humidity.html"><img src="https://github.com/nico555c/Web-Design-Challenge/blob/main/assets/images/Fig2.png?raw=true" width="100%" alt="humidity"></a>
+                  <a href="/sex">
+                     <div id="sex_pie" style:width: 100%></div> 
+                  </a>
                  </div>
              
                  <div class="col-3 col-md-6">
-                     <a href="visualizations/cloudiness.html"><img class="pic" src="https://github.com/nico555c/Web-Design-Challenge/blob/main/assets/images/Fig3.png?raw=true" width="100%" alt="cloudiness"></a>
+                  <a href="/race">
+                     <div id="race_bar" style:width: 100%></div>
+                  </a>
                  </div>
                  
                  <div class="col-3 col-md-6">
@@ -561,6 +543,9 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
 
   <script src="https://d3js.org/d3.v5.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="./static/js/app.js"></script>
   <script src="./static/js/map.js"></script>
    

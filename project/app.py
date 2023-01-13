@@ -40,15 +40,15 @@ def index():
 
 @app.route("/age", methods=["GET"])
 def age():
-    return render_template('By-age-page.html')
+    return render_template('age_group.html')
 
 @app.route("/sex", methods=["GET"])
 def sex():
-    return render_template('By-sex-page.html')
+    return render_template('sex_group.html')
 
-@app.route("/origin", methods=["GET"])
+@app.route("/race", methods=["GET"])
 def origin():
-    return render_template('By-ethincity-page.html')
+    return render_template('race_group.html')
 
 #################################################
 # Flask API Routes
@@ -59,19 +59,16 @@ def origin():
 
 def voting_summary(state, year):
     
+
     # Create our session (link) from Python to the DB
 
     
     voting_summary={}
-    age_stats={}
-    sex_stats={}
-    race_stats = {}
     
     
     with Session(engine) as session:
         """ Convert the query results to a dictionary .
-        Return the JSON representation of your dictionary.""" 
-
+        Return the JSON representation of your dictionary."""  
             
         # Query all age
         
@@ -79,44 +76,86 @@ def voting_summary(state, year):
             .filter(age_dataset.age!='Total',age_dataset.state==state, age_dataset.voting_year==year)\
             .all()
         
-        age_results_by_total =  session.query(age_dataset.total_population, age_dataset.total_registered, age_dataset.total_voted,)\
-                .filter(age_dataset.age=='Total', age_dataset.state==state, age_dataset.voting_year==year)\
-                .all()
-
-        sex_race_results_by_sex =  session.query(sex_race_dataset.sex_race_hispanic_origin, sex_race_dataset.total_voted,)\
-                .filter(sex_race_dataset.sex_race_hispanic_origin.in_(['Male','Total','Female']), sex_race_dataset.state==state, sex_race_dataset.voting_year==year)\
-                .all()
-        
-        sex_race_results_by_race =  session.query(sex_race_dataset.sex_race_hispanic_origin, sex_race_dataset.total_voted,)\
-                .filter(sex_race_dataset.sex_race_hispanic_origin.notin_(['Male','Total','Female']), sex_race_dataset.state==state, sex_race_dataset.voting_year==year)\
-                .all()
-
-
-
+    age_group_list=[]
+    voted_list=[]
+    
     for age, total_voted in age_results_by_age:
-        age_stats[age] = total_voted 
-
+         age_group_list.append(age)
+         voted_list.append(total_voted)
+        
+    age_stats={
+         'age_group': age_group_list,
+         'voted': voted_list
+     }
+    
     voting_summary['age_stats'] = age_stats
     
-        
-    total_stats = {'total_population':age_results_by_total[0][0],\
-                'total_registered':age_results_by_total[0][1],\
-                'total_voted':age_results_by_total[0][2]}
-        
-    voting_summary['total_stats'] = total_stats
-
     
-    for sex_race_hispanic_origin , total_voted in sex_race_results_by_sex:
-        print(sex_race_hispanic_origin)
-        print("test")
-        sex_stats[sex_race_hispanic_origin] = total_voted 
+    
+    age_results_by_total =  session.query(age_dataset.total_population, age_dataset.total_registered, age_dataset.total_voted,)\
+            .filter(age_dataset.age=='Total', age_dataset.state==state, age_dataset.voting_year==year)\
+            .all()
+   
+    total_list=['total_population','total_registered','total_voted']
+    voted_list=[age_results_by_total[0][0],age_results_by_total[0][1],age_results_by_total[0][2]]
+    
+    
+    total_stats={
+           'total_group':total_list,
+            'voted': voted_list
+         
+     }
+     
+    voting_summary['total_stats'] = total_stats   
+            
+       
+    sex_race_results_by_sex =  session.query(sex_race_dataset.sex_race_hispanic_origin, sex_race_dataset.total_voted,)\
+            .filter(sex_race_dataset.sex_race_hispanic_origin.in_(('Male','Female')) ,sex_race_dataset.state==state, sex_race_dataset.voting_year==year)\
+            .all()
+            
+    # sex_stats={}
+    
+    # for sex_race_hispanic_origin , total_voted in sex_race_results_by_sex:
+    #  sex_stats[sex_race_hispanic_origin] = total_voted 
+    
+    sex_group_list=[]
+    voted_list=[]
+    
+    for  sex_race_hispanic_origin , total_voted in sex_race_results_by_sex :
+         sex_group_list.append(sex_race_hispanic_origin)
+         voted_list.append(total_voted)
+        
+    sex_stats={
+         'sex_group': sex_group_list,
+         'voted': voted_list
+     }   
+     
     
     voting_summary['sex_stats'] = sex_stats
     
- 
-    for sex_race_hispanic_origin , total_voted in sex_race_results_by_race:
-        race_stats[sex_race_hispanic_origin] = total_voted 
+     
+    
+    
+    sex_race_results_by_race =  session.query(sex_race_dataset.sex_race_hispanic_origin, sex_race_dataset.total_voted,)\
+            .filter(sex_race_dataset.sex_race_hispanic_origin.notin_(('Male','Total','Female')) ,sex_race_dataset.state==state, sex_race_dataset.voting_year==year)\
+            .all()
+            
+    
+    origin_group_list=[]
+    voted_list=[]
+    
+    for  sex_race_hispanic_origin , total_voted in sex_race_results_by_race :
+         origin_group_list.append(sex_race_hispanic_origin)
+         voted_list.append(total_voted)
         
+    race_stats={
+         'origin_group': origin_group_list,
+         'voted': voted_list
+     }   
+     
+    
+   
+    
     voting_summary['race_stats'] = race_stats
     
 

@@ -6,22 +6,16 @@ var state_year =  "";
 var state_selected = "Alabama";
 var year_selected = "";
 var years = ["2016", "2018"];
-var age_id = [];
 
 function dataUpdate(){
    year_selected = document.getElementById("selDataset").value;
+   window.localStorage.setItem('year_selected', year_selected);
    state_year =  state_selected + "/" + year_selected;
    url = new URL(state_year, baseUrl);
    data = d3.json(url);
    agebardisplay();
    racebardisplay();
    sexpiedisplay();
-   window.localStorage.setItem('year_selected', year_selected);
-   window.localStorage.setItem('state_selected', state_selected);
-   window.localStorage.setItem("age_id", JSON.stringify(age_id));
-   console.log(year_selected);
-   console.log(state_selected);
-   console.log(age_id);
 }
 
 function dropdowndisplay() {
@@ -33,11 +27,13 @@ function dropdowndisplay() {
       el.value = opt;
       select.appendChild(el);
    }
+   year_selected = document.getElementById("selDataset").value;
+   window.localStorage.setItem('year_selected', year_selected);
 }
 
 function agebardisplay() {
       return data.then(function (inspect) {
-         age_id = inspect.age_stats.age_group;
+         let age_id = inspect.age_stats.age_group;
          let age_value = inspect.age_stats.voted;
  
             let dataplt = [{
@@ -52,7 +48,7 @@ function agebardisplay() {
                "yaxis": {
                   "type":"category"
                },
-               // margin: {"t": 0, "b": 0, "l": 0, "r": 0}
+               margin: {"t": 0, "b": 0, "l": 0, "r": 0}
                // height: 600,
                // width: 500,
             };
@@ -139,6 +135,13 @@ function panelupdate(subjectID){
          sel.removeChild(sel.firstChild);
    }
    paneldisplay(subjectID);
+}
+
+
+function optionChanged(){
+   year_selected = document.getElementById("selDataset").value;
+   window.localStorage.setItem('year_selected', year_selected);
+   dataUpdate();
 }
 
 

@@ -1,33 +1,27 @@
-const baseUrl = 'http://localhost:5000/api/v1.0/voting_summary/';
+const baseUrl = 'http://localhost:5000/api/v1.0/voted_age/';
+
+var year_selected = window.localStorage.getItem('year_selected');
+var state_selected = window.localStorage.getItem('state_selected');
+var age_id = JSON.parse(localStorage.getItem("age_id"));
 
 var url = "";
 var data = "";
-var state_year =  "";
-var state_selected = "Alabama";
-var year_selected = "";
-var years = ["2016", "2018"];
-var age_id = [];
+var year_age =  "";
+
 
 function dataUpdate(){
-   year_selected = document.getElementById("selDataset").value;
-   state_year =  state_selected + "/" + year_selected;
-   url = new URL(state_year, baseUrl);
+   let age_selected = document.getElementById("selDataset").value;
+   year_age =  year_selected + "/" + age_selected;
+   url = new URL(year_age, baseUrl);
    data = d3.json(url);
-   agebardisplay();
-   racebardisplay();
-   sexpiedisplay();
-   window.localStorage.setItem('year_selected', year_selected);
-   window.localStorage.setItem('state_selected', state_selected);
-   window.localStorage.setItem("age_id", JSON.stringify(age_id));
-   console.log(year_selected);
-   console.log(state_selected);
-   console.log(age_id);
+   console.log(data)
 }
+
 
 function dropdowndisplay() {
    let select = document.getElementById("selDataset");
-   for(let i = 0; i < years.length; i++) {
-      let opt = years[i];
+   for(let i = 0; i < age_id.length; i++) {
+      let opt = age_id[i];
       let el = document.createElement("option");
       el.textContent = opt;
       el.value = opt;
@@ -37,7 +31,7 @@ function dropdowndisplay() {
 
 function agebardisplay() {
       return data.then(function (inspect) {
-         age_id = inspect.age_stats.age_group;
+         let age_id = inspect.age_stats.age_group;
          let age_value = inspect.age_stats.voted;
  
             let dataplt = [{
@@ -52,7 +46,7 @@ function agebardisplay() {
                "yaxis": {
                   "type":"category"
                },
-               // margin: {"t": 0, "b": 0, "l": 0, "r": 0}
+               margin: {"t": 0, "b": 0, "l": 0, "r": 0}
                // height: 600,
                // width: 500,
             };
@@ -139,6 +133,11 @@ function panelupdate(subjectID){
          sel.removeChild(sel.firstChild);
    }
    paneldisplay(subjectID);
+}
+
+
+function optionChanged(){
+   dataUpdate();
 }
 
 
