@@ -10,6 +10,10 @@ var age_id = [];
 var race_id = [];
 var sex_id = [];
 
+function delay(time) {
+   return new Promise(resolve => setTimeout(resolve, time));
+ }
+
 function dataUpdate(){
    year_selected = document.getElementById("selDataset").value;
    state_year =  state_selected + "/" + year_selected;
@@ -18,11 +22,11 @@ function dataUpdate(){
    agebardisplay();
    racebardisplay();
    sexpiedisplay();
+   panelupdate();
+   delay(1000).then();
    window.localStorage.setItem('year_selected', year_selected);
    window.localStorage.setItem('state_selected', state_selected);
-   window.localStorage.setItem("age_id", JSON.stringify(age_id));
-   window.localStorage.setItem("race_id", JSON.stringify(race_id));
-   window.localStorage.setItem("sex_id", JSON.stringify(sex_id));
+   console.log(age_id);
 }
 
 function dropdowndisplay() {
@@ -39,6 +43,7 @@ function dropdowndisplay() {
 function agebardisplay() {
       return data.then(function (inspect) {
          age_id = inspect.age_stats.age_group;
+         window.localStorage.setItem("age_id", JSON.stringify(age_id));
          let age_value = inspect.age_stats.voted;
  
             let dataplt = [{
@@ -65,6 +70,7 @@ function agebardisplay() {
 function racebardisplay() {
    return data.then(function (inspect) {
       race_id = inspect.race_stats.origin_group;
+      window.localStorage.setItem("race_id", JSON.stringify(race_id));
       let race_value = inspect.race_stats.voted;
 
          let dataplt = [{
@@ -91,6 +97,7 @@ function racebardisplay() {
 function sexpiedisplay() {
    return data.then(function (inspect) {
       sex_id = inspect.sex_stats.sex_group;
+      window.localStorage.setItem("sex_id", JSON.stringify(sex_id));
       let sex_value = inspect.sex_stats.voted;
 
       var data = [{
@@ -112,38 +119,32 @@ function sexpiedisplay() {
    });
 }
 
-
-  
-
-
-
-
 function paneldisplay(subjectID) {
-   let select = document.getElementById("sample-metadata");
-   let metadataUpdate = getMetadata(subjectID);
-   let metadataKeys = Object.keys(metadataUpdate);
+   let select = document.getElementById("state_total");
+   return data.then(function (inspect) {
 
-   for(let i = 0; i < metadataKeys.length; i++) {
-      var key = metadataKeys[i]
-      metadataUpdate[key].then(function(metadata){
+      let metadataKeys = inspect.total_stats.total_group;
+      let metadataValue = inspect.total_stats.voted;
+
+      for(let i = 0; i < metadataKeys.length; i++) {
          let el = document.createElement("p");
-         el.textContent = `${metadataKeys[i]}:${metadata}`;
+         el.textContent = `${metadataKeys[i]}: ${metadataValue[i]}`;
          select.append(el);
-      });
-   }
-
+      }
+   });
 }
 
-function panelupdate(subjectID){
-   let sel = document.getElementById("sample-metadata"); 
+function panelupdate(){
+   let sel = document.getElementById("state_total"); 
    while(sel.firstChild) {
          sel.removeChild(sel.firstChild);
    }
-   paneldisplay(subjectID);
+   paneldisplay();
 }
 
 
 dropdowndisplay();
 dataUpdate();
+paneldisplay();
 
  
