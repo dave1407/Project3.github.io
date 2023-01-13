@@ -42,6 +42,7 @@ The map, barchart, piechart, and cards will reflect that change and show the dat
 **Interactive Map** The map is interactive and will change based on where the mouse is hovering and by clicking on the states the data in the pie chart and bar charts will change.
 
 **Bar Chart** can be viewed and toggled on the interactive map. State borders are also visible and hoverable. If a state is clicked, the bar chart will populate with that states data. By clicking the years bar chart the website will be navigated to a heat map that shows the density of voters by age using the selected drop down year. By clicking the ethnicity bar chart the website will be navigated to a heat map that shows the density of voters by ethnicity using the selected drop down year. 
+
 **Pie Chart** can be viewed and toggled on the interactive map. State borders are also visible and hoverable. If a state is clicked, the bar chart will populate with that states data.  By clicking the pie chart the website will be navigated to a heat map that shows the density of voters by sex using the selected drop down year. 
 
 
@@ -55,4 +56,5 @@ As a whole, our dashboard is equipped for you to draw numerous observations abou
 
 ## Future Considerations
 Some tasks we'd like to build on in future commits:
-* 
+
+*  
