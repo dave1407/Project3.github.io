@@ -1,26 +1,33 @@
-# Project 3
-**_Created by [David Mostacero](https://github.com/dave1407), [Madduri Sridevi](https://github.com/SrideviMadduri), [Nicoleta Cosereanu](),  [Jordon Moses](https://github.com/jm18443), & [Anger Gardy]()._**
+# Voter Census Data Project
+**_Brought to you by [David Mostacero](https://github.com/dave1407), [Madduri Sridevi](https://github.com/SrideviMadduri), [Nicoleta Cosereanu](),  [Jordon Moses](https://github.com/jm18443), and [Anger Gardy](https://github.com/gardy738)._**
 
-An interactive website that looks ove voting data of 1016 and 2018 that helps to show us more about how voting will be in the future..<br><br>
+## Project Summary
+Elections are always such a hot and controversial topic. Candidate’s platforms usually try to target voters by demographic characteristics such as age group, sex and ethnic background. This project aims to create a platform that helps visualize those demographic characteristics by state from the 2016 senate elections and 2018 presidential elections, and determine whether or not demographic targeting really works.
+<!-- An interactive display of voter’s census data across the United States for the senate elections from 2016 and presidential elections from 2018.<br><br> -->
 
 
-![screenshot](project/static/img/Website.png)
+<!-- ![screenshot](project/static/img/Website.png) -->
 
-## Background
-We researched datasets that would help us track voting trends among ethnicity, sex, and age. We found data that tracked the voting habits of voters in the years of 2016 and 2018. 2016 being the year of the presidential election and 2018 being the year of senate and house of representative elections.
+<!-- ## Background
+Elections are always such a hot and controversial topic. Candidate’s platforms usually try to target voters by demographic characteristics such as age group, sex and ethnic background. This project aims to create a platform that helps visualize those demographic characteristics by state from the 2016 senate elections and 2018 presidential elections, and determine whether or not demographic targeting really works. -->
 
 ## Getting Started
-_Please follow the instructions below.
 
 1. Download the repo in your preferred manner.
 2. Create a file called `config.py` in the `/project` folder. 
-<br> This file should contain username , password and port for postgress database.
+<br> This file should contain username , password and port for postgreSQL database as shown below:
+
+        username ='insert your user_name' 
+        password='insert your password'
+        port='xxxx'
+
 3. Create database Vote_data_db in  PostgreSQL database.
 4. Open  project3_Voting_Data.ipynb file in  jupyter notebook and run the file.
 5. Run `app.py` in your terminal by using the following command:
 ```
 $ python app.py
 ```
+6. Copy the local host url and paste it in your browser.
 
 ## Resources, Libraries, & Tools
 
@@ -32,9 +39,43 @@ $ python app.py
 * [Plotly for JavaScript](https://plotly.com/javascript/)
 * [Bootstrap](https://getbootstrap.com/) for website grid system
 
-**Tools & languages:** JavaScript, HTML, CSS, Python Flask, Jupyter Notebook, PostgreSQL, Bootstrap
+**Tools & languages:** 
+* JavaScript, HTML, CSS, Python Flask, Jupyter Notebook, PostgreSQL, Bootstrap
 
-## Features
+## Navigation
+- On the home page, select the year you want to study. This year will be saved in your local cache memory and will be the year by which all other pages displayed are filtered.
+Next you can click on any state from the interactive US map to go to the visualization page.
+
+![screenshot](project/static/img/Website.png)
+
+- The visualizations will display the number of voters in thousands by age, sex and race based on the year and state selected. A data card will also display total population of the state, total population registered to vote and total population who actually voted.
+
+(Visualization page picture)
+
+Clicking on any of the graphic visualization will open a new page that displays a heatmap of the respective subsection.
+
+**Age Page**
+- Select an age group to exhibit a US heatmap of the distribution of voters by the selected age group.
+
+**Sex Page**
+- Select sex  to exhibit a US heatmap of the distribution of voters by the selected sex group.
+
+**Race Page**
+- Select a race to exhibit a US heatmap of the distribution of voters by the selected race.
+
+## Observations
+
+- The most voters are in the 45 to 64 age group. Then next highest typically is the 65+ age group, but in certain states such as Colorado, the 25 to 34 and 35 to 44 age groups compete very closely with the 65+ age groups.
+
+- Female voters surpass male voters overall and, in each state, individually.  In New Mexico, female voters are 10% more than male voters.
+- Looking at a heat map of voters by race, we see that most Asian voters are concentrated in California while black voters are mostly in the south and east region of the US. Other races follow closely the population distribution by state
+
+## Future Development
+
+- Analyze if there is a correlation between the voter demographic data and the election results by state.
+- Make the website more user friendly by allowing the user to select the year on each page to refresh the visuals accordingly.
+
+<!-- ## Features
 After running the Flask application, begin exploring the data by perusing the data by years using the drop down in the top right corner..
 
 The map, barchart, piechart, and cards will reflect that change and show the data based on the year.
@@ -58,4 +99,4 @@ As a whole, our dashboard is equipped for you to draw numerous observations abou
 ## Future Considerations
 Some tasks we'd like to build on in future commits:
 
-*  
+*   -->
