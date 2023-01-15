@@ -52,7 +52,7 @@ As a whole, our dashboard is equipped for you to draw numerous observations abou
 
 **Select analyses:**
 
-* In all states, **women** vote more regualrly in both 2016 and 2018.
+* In all states, **women** vote more regularly in both 2016 and 2018.
 * Moste voter were between the ages of **45-64**
 
 ## Future Considerations
