@@ -1,23 +1,23 @@
-const baseUrl = 'http://localhost:5000/api/v1.0/voted_sex/';
+const baseUrl = 'http://localhost:5000/api/v1.0/voted_age/';
 
 var year_selected = window.localStorage.getItem('year_selected');
 var state_selected = window.localStorage.getItem('state_selected');
-var sex_id = JSON.parse(localStorage.getItem("sex_id"));
+var age_id = JSON.parse(localStorage.getItem("age_id"));
 var years = JSON.parse(localStorage.getItem("years"));
 
 var url = "";
 var data = "";
-var year_sex =  "";
+var year_age =  "";
 
 
-// invoked upon selection of sex group
+// invoked upon selection of age group
 function dataUpdate(){
-   let sex_selected = document.getElementById("selDatagroup").value;
+   let age_selected = document.getElementById("selDatagroup").value;
    year_selected = document.getElementById("selDatayears").value;
    window.localStorage.setItem('year_selected', year_selected);
    document.getElementsByClassName('u-text-2')[0].innerText= "Data displayed for year" + " " + year_selected;
-   year_sex =  year_selected + "/" + sex_selected;
-   url = new URL(year_sex, baseUrl);
+   year_age =  year_selected + "/" + age_selected;
+   url = new URL(year_age, baseUrl);
    data = d3.json(url);
    data.then(heatmap);
 }
@@ -37,8 +37,8 @@ function dropdownyears() {
 
 function dropdowngroup() {
    let select = document.getElementById("selDatagroup");
-   for(let i = 0; i < sex_id.length; i++) {
-      let opt = sex_id[i];
+   for(let i = 0; i < age_id.length; i++) {
+      let opt = age_id[i];
       let el = document.createElement("option");
       el.textContent = opt;
       el.value = opt;
@@ -46,8 +46,8 @@ function dropdowngroup() {
    }
 }
 
-function heatmap(sex_data){
-   console.log(sex_data);
+function heatmap(age_data){
+   console.log(age_data);
    google.charts.load('current', {
       'packages':['geochart'],
     });
@@ -56,11 +56,11 @@ function heatmap(sex_data){
     voted_by_state=[]
     voted_by_state.push(['State','Voted']);
 
-    sex_data.id.map((val, index) => {if(val!=='US') voted_by_state.push([val, sex_data.voted[index]])});
-
+    age_data.id.map((val, index) => voted_by_state.push([val, age_data.voted[index]]));
+    
    
     function drawRegionsMap() {
-      var data = google.visualization.arrayToDataTable(voted_by_state);
+      var dataplt = google.visualization.arrayToDataTable(voted_by_state);
    
       var options = {
         region: 'US',
@@ -71,7 +71,8 @@ function heatmap(sex_data){
    
       var chart = new google.visualization.GeoChart(document.getElementById('chartdiv'));
    
-      chart.draw(data, options);
+      chart.draw(dataplt, options);
+      console.log(dataplt)
     }
 }
 

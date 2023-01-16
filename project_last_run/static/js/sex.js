@@ -9,13 +9,13 @@ var url = "";
 var data = "";
 var year_sex =  "";
 
+document.getElementsByClassName('u-text-2')[0].innerText= "Data displayed for year" + " " + year_selected;
 
 // invoked upon selection of sex group
 function dataUpdate(){
    let sex_selected = document.getElementById("selDatagroup").value;
    year_selected = document.getElementById("selDatayears").value;
    window.localStorage.setItem('year_selected', year_selected);
-   document.getElementsByClassName('u-text-2')[0].innerText= "Data displayed for year" + " " + year_selected;
    year_sex =  year_selected + "/" + sex_selected;
    url = new URL(year_sex, baseUrl);
    data = d3.json(url);
@@ -56,7 +56,7 @@ function heatmap(sex_data){
     voted_by_state=[]
     voted_by_state.push(['State','Voted']);
 
-    sex_data.id.map((val, index) => {if(val!=='US') voted_by_state.push([val, sex_data.voted[index]])});
+    sex_data.id.map((val, index) => voted_by_state.push([val, sex_data.voted[index]]));
 
    
     function drawRegionsMap() {

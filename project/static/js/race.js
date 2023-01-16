@@ -10,8 +10,6 @@ var data = "";
 var year_race =  "";
 
 
-
-
 // invoked upon selection of race group
 function dataUpdate(){
    let race_selected = document.getElementById("selDatagroup").value;
@@ -58,7 +56,7 @@ function heatmap(race_data){
     voted_by_state=[]
     voted_by_state.push(['State','Voted']);
 
-    race_data.id.map((val, index) => voted_by_state.push([val, race_data.voted[index]]));
+    race_data.id.map((val, index) => {if(val!=='US') voted_by_state.push([val, race_data.voted[index]])});
 
    
     function drawRegionsMap() {

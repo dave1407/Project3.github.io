@@ -56,7 +56,7 @@ function heatmap(age_data){
     voted_by_state=[]
     voted_by_state.push(['State','Voted']);
 
-    age_data.id.map((val, index) => voted_by_state.push([val, age_data.voted[index]]));
+    age_data.id.map((val, index) => {if(val!=='US') voted_by_state.push([val, age_data.voted[index]])});
     
    
     function drawRegionsMap() {
