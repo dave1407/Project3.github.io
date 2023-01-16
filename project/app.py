@@ -36,19 +36,27 @@ CORS(app)
 
 @app.route("/", methods=["GET"])
 def index():
-    return render_template('index.html')
+    return render_template('home.html')
+
+@app.route("/charts", methods=["GET"])
+def charts():
+    return render_template('charts.html')
 
 @app.route("/age", methods=["GET"])
 def age():
-    return render_template('age_group.html')
+    return render_template('age.html')
 
 @app.route("/sex", methods=["GET"])
 def sex():
-    return render_template('sex_group.html')
+    return render_template('sex.html')
 
 @app.route("/race", methods=["GET"])
 def origin():
-    return render_template('race_group.html')
+    return render_template('race.html')
+
+@app.route("/contact", methods=["GET"])
+def contact():
+    return render_template('contact.html')
 
 #################################################
 # Flask API Routes

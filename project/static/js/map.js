@@ -16,6 +16,7 @@ document.addEventListener('click', function (e) {
         var content = e.target.dataset.name;
         state_selected = content;
         dataUpdate();
+        location.href="/charts"
     }
     else {
         document.getElementById("details-box").style.opacity = "0%";
