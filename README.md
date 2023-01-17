@@ -2,14 +2,7 @@
 **_Brought to you by [David Mostacero](https://github.com/dave1407), [Madduri Sridevi](https://github.com/SrideviMadduri), [Nicoleta Cosereanu](),  [Jordon Moses](https://github.com/jm18443), and [Anger Gardy](https://github.com/gardy738)._**
 
 ## Project Summary
-Elections are always such a hot and controversial topic. Candidate’s platforms usually try to target voters by demographic characteristics such as age group, sex and ethnic background. This project aims to create a platform that helps visualize those demographic characteristics by state from the 2016 senate elections and 2018 presidential elections, and determine whether or not demographic targeting really works.
-<!-- An interactive display of voter’s census data across the United States for the senate elections from 2016 and presidential elections from 2018.<br><br> -->
-
-
-<!-- ![screenshot](project/static/img/Website.png) -->
-
-<!-- ## Background
-Elections are always such a hot and controversial topic. Candidate’s platforms usually try to target voters by demographic characteristics such as age group, sex and ethnic background. This project aims to create a platform that helps visualize those demographic characteristics by state from the 2016 senate elections and 2018 presidential elections, and determine whether or not demographic targeting really works. -->
+Elections are always such a hot and controversial topic. Candidate’s platforms usually try to target voters by demographic characteristics such as age group, sex and ethnic background. This project aims to create a platform that helps visualize those demographic characteristics by state from the 2016 presidential elections and 2018 senate elections, and determine whether or not demographic targeting really works.
 
 ## Getting Started
 
@@ -35,9 +28,10 @@ $ python app.py
 * [Voting and registration data](https://data.world/uscensusbureau/voting-and-registration-data) for national & state data on voting trends
 
 **Libraries:**
-* [Leaflet](https://leafletjs.com/index.html), [Leaflet PointInPolygon](https://github.com/hayeswise/Leaflet.PointInPolygon), [Leaflet Heat Map](https://github.com/Leaflet/Leaflet.heat), [Leaflet US Choropleth](https://leafletjs.com/examples/choropleth/us-states.js), [Mapbox](https://docs.mapbox.com/api/maps/#styles) for mapping
+* [Geochart](https://developers.google.com/chart/interactive/docs/gallery/geochart)
 * [Plotly for JavaScript](https://plotly.com/javascript/)
 * [Bootstrap](https://getbootstrap.com/) for website grid system
+
 
 **Tools & languages:** 
 * JavaScript, HTML, CSS, Python Flask, Jupyter Notebook, PostgreSQL, Bootstrap
@@ -46,11 +40,10 @@ $ python app.py
 - On the home page, select the year you want to study. This year will be saved in your local cache memory and will be the year by which all other pages displayed are filtered.
 Next you can click on any state from the interactive US map to go to the visualization page.
 
-![screenshot](project/static/img/Website.png)
+<!-- ![screenshot](project/static/img/Website.png) -->
 
 - The visualizations will display the number of voters in thousands by age, sex and race based on the year and state selected. A data card will also display total population of the state, total population registered to vote and total population who actually voted.
 
-(Visualization page picture)
 
 Clicking on any of the graphic visualization will open a new page that displays a heatmap of the respective subsection.
 
@@ -74,6 +67,15 @@ Clicking on any of the graphic visualization will open a new page that displays 
 
 - Analyze if there is a correlation between the voter demographic data and the election results by state.
 - Make the website more user friendly by allowing the user to select the year on each page to refresh the visuals accordingly.
+
+<!-- An interactive display of voter’s census data across the United States for the senate elections from 2016 and presidential elections from 2018.<br><br> -->
+
+<!-- * [Leaflet](https://leafletjs.com/index.html), [Leaflet PointInPolygon](https://github.com/hayeswise/Leaflet.PointInPolygon), [Leaflet Heat Map](https://github.com/Leaflet/Leaflet.heat), [Leaflet US Choropleth](https://leafletjs.com/examples/choropleth/us-states.js), [Mapbox](https://docs.mapbox.com/api/maps/#styles) for mapping -->
+
+<!-- ![screenshot](project/static/img/Website.png) -->
+
+<!-- ## Background
+Elections are always such a hot and controversial topic. Candidate’s platforms usually try to target voters by demographic characteristics such as age group, sex and ethnic background. This project aims to create a platform that helps visualize those demographic characteristics by state from the 2016 senate elections and 2018 presidential elections, and determine whether or not demographic targeting really works. -->
 
 <!-- ## Features
 After running the Flask application, begin exploring the data by perusing the data by years using the drop down in the top right corner..
