@@ -42,7 +42,7 @@
 .u-section-1 .u-group-2 {
   min-height: 30px;
   height: auto;
-  margin-top: 1px;
+  margin-top: 0px;
   margin-bottom: 0;
   width: 100%;
 }
@@ -52,14 +52,14 @@
 }
 
 .u-section-1 .u-text-4 {
-  margin: 4px auto 0;
+  margin: 0px auto 0;
 }
 
 .u-section-1 .u-group-3 {
   min-height: 30px;
-  margin-top: 71px;
-  margin-bottom: 0;
   height: auto;
+  margin-top: 10px;
+  margin-bottom: 0;
   width: 100%;
 }
 
@@ -70,7 +70,7 @@
 .u-section-1 .u-group-4 {
   min-height: 30px;
   height: auto;
-  margin-top: -30px;
+  margin-top: 0px;
   margin-bottom: 0;
   width: 100%;
 }
