@@ -31,10 +31,16 @@ $ python app.py
 * [Geochart](https://developers.google.com/chart/interactive/docs/gallery/geochart)
 * [Plotly for JavaScript](https://plotly.com/javascript/)
 * [Bootstrap](https://getbootstrap.com/) for website grid system
+* [Jquery] (https://api.jquery.com/)
+* [Google Fonts] (https://fonts.googleapis.com/)
+* [D3 Data Driven Documents] (https://d3js.org/d3.v5.min.js)
+* [Flask] (https://flask.palletsprojects.com/en/2.2.x/)
+* [SQLAlchemy] (https://www.sqlalchemy.org/)
+* [Numpy] (https://numpy.org/)
 
 
 **Tools & languages:** 
-* JavaScript, HTML, CSS, Python Flask, Jupyter Notebook, PostgreSQL, Bootstrap
+* JavaScript, HTML, CSS, Python Flask, Jupyter Notebook, PostgreSQL, Bootstrap, Nicepage
 
 ## Navigation
 - On the home page, select the year you want to study. This year will be saved in your local cache memory and will be the year by which all other pages displayed are filtered.
